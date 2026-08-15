@@ -204,6 +204,7 @@
     }
     input[type="text"],
     input[type="email"],
+    input[type="password"],
     select,
     textarea {
       width: 100%;
@@ -314,6 +315,43 @@
     .contact-info p {
       margin: 6px 0;
     }
+    .pw-gate {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .pw-gate p {
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+    }
+    .pw-input-wrap {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .pw-input-wrap input {
+      width: 220px;
+    }
+    .pw-input-wrap button {
+      padding: 10px 24px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .pw-input-wrap button:hover {
+      background: #5a6fd6;
+    }
+    .pw-error {
+      color: #e74c3c;
+      margin-top: 12px;
+      font-weight: 600;
+      display: none;
+    }
     @media (max-width: 600px) {
       header h1 { font-size: 1.5rem; }
       nav { gap: 6px; }
@@ -321,6 +359,7 @@
       section { padding: 24px 16px; }
       .member-table { font-size: 0.85rem; }
       .member-table th, .member-table td { padding: 10px 8px; }
+      .pw-input-wrap input { width: 100%; }
     }
   </style>
 <base target="_blank">
@@ -422,174 +461,155 @@
       </div>
     </section>
 
-    <!-- 参加要項 -->
-<div id="password-gate">
-  <p style="text-align: center; margin-bottom: 16px;">🔒 参加要項は参加者専用です</p>
-  <div style="display: flex; gap: 8px; justify-content: center;">
-    <input type="password" id="pw-input" placeholder="パスワードを入力" 
-           style="padding: 10px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;">
-    <button onclick="checkPw()" 
-            style="padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
-      解除
-    </button>
-  </div>
-  <p id="pw-error" style="color: #e74c3c; text-align: center; margin-top: 8px; display: none;">パスワードが違います</p>
-</div>
-
-<div id="guideline-content" style="display: none;">
-  <!--  <section id="guideline">
+    <!-- 参加要項（パスワード制） -->
+    <section id="guideline">
       <h2>📝 参加要項</h2>
 
-      <div class="contact-info">
-        <h3 style="border-left: none; padding-left: 0; margin-top: 0; color: #667eea;">📧 連絡先</h3>
-        <p><strong>X（旧Twitter）：</strong><a href="https://x.com/haseuta" target="_blank" style="color: #667eea;">@haseuta</a></p>
-        <p><strong>メールアドレス：</strong><a href="mailto:zimahase@gmail.com" style="color: #667eea;">zimahase@gmail.com</a></p>
-        <p style="margin-bottom: 0; font-size: 0.9rem; color: #666;">までご連絡いただきますようお願い致します。</p>
+      <!-- パスワード入力画面 -->
+      <div id="pw-gate" class="pw-gate">
+        <p>🔒 参加要項は参加者専用です</p>
+        <div class="pw-input-wrap">
+          <input type="password" id="pw-input" placeholder="パスワードを入力">
+          <button onclick="checkPw()">解除</button>
+        </div>
+        <p id="pw-error" class="pw-error">パスワードが違います</p>
       </div>
 
-      <h3>1. 形式</h3>
-      <p>アンソロジーへの寄稿</p>
+      <!-- 参加要項の中身（パスワード入力後に表示） -->
+      <div id="guideline-content" style="display: none;">
+        <div class="contact-info">
+          <h3 style="border-left: none; padding-left: 0; margin-top: 0; color: #667eea;">📧 連絡先</h3>
+          <p><strong>X（旧Twitter）：</strong><a href="https://x.com/haseuta" target="_blank" style="color: #667eea;">@haseuta</a></p>
+          <p><strong>メールアドレス：</strong><a href="mailto:zimahase@gmail.com" style="color: #667eea;">zimahase@gmail.com</a></p>
+          <p style="margin-bottom: 0; font-size: 0.9rem; color: #666;">までご連絡いただきますようお願い致します。</p>
+        </div>
 
-      <h3>2. 発行日・タイトル</h3>
-      <ul>
-        <li>発行日：2027年3月21日　HARU COMIC CITY 東京 2027 イベント合わせ</li>
-        <li>タイトル：ますかおアンソロジー（未定）</li>
-      </ul>
+        <h3>1. 形式</h3>
+        <p>アンソロジーへの寄稿</p>
 
-      <h3>3. 内容</h3>
-      <ul>
-        <li>漫画、イラスト（カラー可）、小説</li>
-        <li>テーマ：同棲</li>
-        <li>テーマに沿った作品であれば自由にご執筆ください</li>
-        <li>全年齢を予定しております</li>
-      </ul>
+        <h3>2. 発行日・タイトル</h3>
+        <ul>
+          <li>発行日：2027年3月21日　HARU COMIC CITY 東京 2027 イベント合わせ</li>
+          <li>タイトル：ますかおアンソロジー（未定）</li>
+        </ul>
 
-      <h3>4. 原稿締切</h3>
-      <p><strong>1月10日</strong></p>
-      <p>編集・修正期間を含め、少し早めの締切を設定しております。遅れそうな場合はご相談ください。</p>
+        <h3>3. 内容</h3>
+        <ul>
+          <li>漫画、イラスト（カラー可）、小説</li>
+          <li>テーマ：同棲</li>
+          <li>テーマに沿った作品であれば自由にご執筆ください</li>
+          <li>全年齢を予定しております</li>
+        </ul>
 
-      <h3>5. ページ数</h3>
-      <ul>
-        <li>一人<strong>8ページ以上</strong>を予定しております。一般的なアンソロジーより最低ページ数が多めのお願いとなってしまいますので、ページ数につきましては個別にご相談ください。</li>
-        <li>複数作品でも可能です。</li>
-        <li><strong>10月31日まで</strong>にページ数・タイトルをご連絡いただけますと幸いです。</li>
-        <li>上記の日程以降でページ数が増える場合はご相談ください。（増ページ自体は歓迎しておりますが、全体の構成調整のため事前にご相談いただけますと幸いです。）</li>
-      </ul>
+        <h3>4. 原稿締切</h3>
+        <p><strong>1月10日</strong></p>
+        <p>編集・修正期間を含め、少し早めの締切を設定しております。遅れそうな場合はご相談ください。</p>
 
-      <h3>6. データ形式</h3>
-      <p><strong>PDFまたはPSD</strong></p>
-      <ul>
-        <li>PDF提出の場合は<strong>フォント埋め込み</strong>をお願いいたします。</li>
-        <li>PSDの場合は<strong>データ統合</strong>をお願いいたします。</li>
-      </ul>
+        <h3>5. ページ数</h3>
+        <ul>
+          <li>一人<strong>8ページ以上</strong>を予定しております。一般的なアンソロジーより最低ページ数が多めのお願いとなってしまいますので、ページ数につきましては個別にご相談ください。</li>
+          <li>複数作品でも可能です。</li>
+          <li><strong>10月31日まで</strong>にページ数・タイトルをご連絡いただけますと幸いです。</li>
+          <li>上記の日程以降でページ数が増える場合はご相談ください。（増ページ自体は歓迎しておりますが、全体の構成調整のため事前にご相談いただけますと幸いです。）</li>
+        </ul>
 
-      <h3>7. 原稿規格</h3>
-      <h4>▲ 漫画・イラスト</h4>
-      <ul>
-        <li>A5（塗り足し5mm込み）</li>
-        <li>600dpi</li>
-        <li>モノクロ2値またはグレースケール</li>
-        <li>厚い本にはならない予定ですが、念のため<strong>ノド20mm程度</strong>を目安にしていただけますと幸いです。</li>
-      </ul>
+        <h3>6. データ形式</h3>
+        <p><strong>PDFまたはPSD</strong></p>
+        <ul>
+          <li>PDF提出の場合は<strong>フォント埋め込み</strong>をお願いいたします。</li>
+          <li>PSDの場合は<strong>データ統合</strong>をお願いいたします。</li>
+        </ul>
 
-      <h4>▲ 小説</h4>
-      <ul>
-        <li>テンプレート：<a href="https://www.eikou.com/dl/word/a5/2/a5-2-hidari-musen.doc" target="_blank" style="color: #667eea;">https://www.eikou.com/dl/word/a5/2/a5-2-hidari-musen.doc</a></li>
-        <li>フォント：お好きなフォント（源暎こぶり明朝等）、9pt</li>
-        <li>提出原稿：PDF、Wordどちらでも</li>
-        <li>左始まりの3ページ〜上限無し</li>
-        <li>ヘッダーは記入、ノンブルは付けないでください。当方で挿入します。</li>
-        <li>テンプレ通り始めにタイトル（1行目）、ペンネーム（2行目）をご記入いただき、3行目を空けて4行目から本文に入ってください。</li>
-        <li>提出時には「<strong>執筆者名＋ページ数.pdf</strong>」（※全て半角英数字）とファイル名に記載をお願いします。</li>
-        <li>Word環境等無い方はこちらでテンプレに流し込みしますので、メモ帳でテキストをお送りください。簡単な誤字脱字を見た後、最終チェックとなります。</li>
-      </ul>
+        <h3>7. 原稿規格</h3>
+        <h4>▲ 漫画・イラスト</h4>
+        <ul>
+          <li>A5（塗り足し5mm込み）</li>
+          <li>600dpi</li>
+          <li>モノクロ2値またはグレースケール</li>
+          <li>厚い本にはならない予定ですが、念のため<strong>ノド20mm程度</strong>を目安にしていただけますと幸いです。</li>
+        </ul>
 
-      <h3>8. 右綴じ・左綴じ</h3>
-      <p>希望は提出時にお伺い致します。</p>
+        <h4>▲ 小説</h4>
+        <ul>
+          <li>テンプレート：<a href="https://www.eikou.com/dl/word/a5/2/a5-2-hidari-musen.doc" target="_blank" style="color: #667eea;">https://www.eikou.com/dl/word/a5/2/a5-2-hidari-musen.doc</a></li>
+          <li>フォント：お好きなフォント（源暎こぶり明朝等）、9pt</li>
+          <li>提出原稿：PDF、Wordどちらでも</li>
+          <li>左始まりの3ページ〜上限無し</li>
+          <li>ヘッダーは記入、ノンブルは付けないでください。当方で挿入します。</li>
+          <li>テンプレ通り始めにタイトル（1行目）、ペンネーム（2行目）をご記入いただき、3行目を空けて4行目から本文に入ってください。</li>
+          <li>提出時には「<strong>執筆者名＋ページ数.pdf</strong>」（※全て半角英数字）とファイル名に記載をお願いします。</li>
+          <li>Word環境等無い方はこちらでテンプレに流し込みしますので、メモ帳でテキストをお送りください。簡単な誤字脱字を見た後、最終チェックとなります。</li>
+        </ul>
 
-      <h3>9. ノンブル</h3>
-      <p>なしでお願い致します。編集時に追加致します。</p>
+        <h3>8. 右綴じ・左綴じ</h3>
+        <p>希望は提出時にお伺い致します。</p>
 
-      <h3>10. 校正</h3>
-      <p>ご希望があれば可能な範囲で対応致します。ただし素人のため、見逃し等がある可能性がございます。ご了承ください。</p>
+        <h3>9. ノンブル</h3>
+        <p>なしでお願い致します。編集時に追加致します。</p>
 
-      <h3>11. 費用</h3>
-      <p>主催負担</p>
+        <h3>10. 校正</h3>
+        <p>ご希望があれば可能な範囲で対応致します。ただし素人のため、見逃し等がある可能性がございます。ご了承ください。</p>
 
-      <h3>12. 謝礼</h3>
-      <p>献本およびささやかな謝礼（例：ギフト券等）を予定しております。</p>
+        <h3>11. 費用</h3>
+        <p>主催負担</p>
 
-      <h3>13. 献本</h3>
-      <ul>
-        <li>匿名配送を予定しております。</li>
-        <li>恐れ入りますが、発送時の配送料は一度ご負担をお願いいたします。後日、ギフト券等にて配送料相当額をお返しいたします。</li>
-      </ul>
+        <h3>12. 謝礼</h3>
+        <p>献本およびささやかな謝礼（例：ギフト券等）を予定しております。</p>
 
-      <h3>14. 頒布</h3>
-      <p>イベントおよび通販委託を予定しております。</p>
+        <h3>13. 献本</h3>
+        <ul>
+          <li>匿名配送を予定しております。</li>
+          <li>恐れ入りますが、発送時の配送料は一度ご負担をお願いいたします。後日、ギフト券等にて配送料相当額をお返しいたします。</li>
+        </ul>
 
-      <h3>15. 印刷所</h3>
-      <p>栄光出版社様、サンライズ様を予定しております。仕様等にあわせ変更になる可能性があります。</p>
+        <h3>14. 頒布</h3>
+        <p>イベントおよび通販委託を予定しております。</p>
 
-      <h3>16. 仕様</h3>
-      <ul>
-        <li>A5</li>
-        <li>本文紙：未定</li>
-        <li>右綴じ</li>
-      </ul>
+        <h3>15. 印刷所</h3>
+        <p>栄光出版社様、サンライズ様を予定しております。仕様等にあわせ変更になる可能性があります。</p>
 
-      <h3>17. 作品タイトル</h3>
-      <p>中扉を設けない場合は、1ページ目にタイトルとお名前をご記載ください。</p>
+        <h3>16. 仕様</h3>
+        <ul>
+          <li>A5</li>
+          <li>本文紙：未定</li>
+          <li>右綴じ</li>
+        </ul>
 
-      <h3>18. コメントカット</h3>
-      <p>後日テンプレートを配布いたします。</p>
+        <h3>17. 作品タイトル</h3>
+        <p>中扉を設けない場合は、1ページ目にタイトルとお名前をご記載ください。</p>
 
-      <h3>19. 奥付</h3>
-      <ul>
-        <li>発行者名、参加者様のお名前を掲載いたします。</li>
-        <li>発行元（サークル名）：企画主・編集者　ジャッカロープの落日/うたね</li>
-      </ul>
+        <h3>18. コメントカット</h3>
+        <p>後日テンプレートを配布いたします。</p>
 
-      <h3>20. 著作権・再録</h3>
-      <ul>
-        <li>寄稿作品の著作権は執筆者様に帰属します。</li>
-        <li>発行前は、寄稿ページの一部を進捗・宣伝として公開していただいて構いません。</li>
-        <li>全文Web公開および再録は、発行から<strong>1年以降</strong>でお願い致します。</li>
-        <li>通販や告知用サンプルとして画像を使用させていただく場合があります。その際、透かし等はこちらで追加することがあります。</li>
-      </ul>
+        <h3>19. 奥付</h3>
+        <ul>
+          <li>発行者名、参加者様のお名前を掲載いたします。</li>
+          <li>発行元（サークル名）：企画主・編集者　ジャッカロープの落日/うたね</li>
+        </ul>
 
-      <h3>21. 辞退について</h3>
-      <p>何らかの事情で参加が難しくなった場合は、お早めにご連絡ください。ご連絡なく締切を過ぎた場合は、ご参加辞退と判断し、こちらの判断で進行させていただく場合があります。</p>
+        <h3>20. 著作権・再録</h3>
+        <ul>
+          <li>寄稿作品の著作権は執筆者様に帰属します。</li>
+          <li>発行前は、寄稿ページの一部を進捗・宣伝として公開していただいて構いません。</li>
+          <li>全文Web公開および再録は、発行から<strong>1年以降</strong>でお願い致します。</li>
+          <li>通販や告知用サンプルとして画像を使用させていただく場合があります。その際、透かし等はこちらで追加することがあります。</li>
+        </ul>
 
-      <h3>22. 内容についてのお願い</h3>
-      <ul>
-        <li>テーマに沿った作品でお願い致します。</li>
-        <li>他ジャンルのパロディ・クロスオーバーはご遠慮ください。</li>
-        <li>公序良俗に反する表現や、企画趣旨にそぐわない内容はご遠慮ください。</li>
-        <li>不安な点がございましたらお気軽にご相談ください。</li>
-        <li>公式画像や他作品のトレス等はお控えください。</li>
-        <li>印刷会社から修正指摘があった場合は、ご修正をお願いすることがあります。</li>
-      </ul>
+        <h3>21. 辞退について</h3>
+        <p>何らかの事情で参加が難しくなった場合は、お早めにご連絡ください。ご連絡なく締切を過ぎた場合は、ご参加辞退と判断し、こちらの判断で進行させていただく場合があります。</p>
+
+        <h3>22. 内容についてのお願い</h3>
+        <ul>
+          <li>テーマに沿った作品でお願い致します。</li>
+          <li>他ジャンルのパロディ・クロスオーバーはご遠慮ください。</li>
+          <li>公序良俗に反する表現や、企画趣旨にそぐわない内容はご遠慮ください。</li>
+          <li>不安な点がございましたらお気軽にご相談ください。</li>
+          <li>公式画像や他作品のトレス等はお控えください。</li>
+          <li>印刷会社から修正指摘があった場合は、ご修正をお願いすることがあります。</li>
+        </ul>
+      </div>
     </section>
- -->
-</div>
 
-<script>
-  function checkPw() {
-    const input = document.getElementById('pw-input').value;
-    if (input === 'アンソロ2027') {  /leben/ ← ここを好きなパスワードに変更
-      document.getElementById('password-gate').style.display = 'none';
-      document.getElementById('guideline-content').style.display = 'block';
-    } else {
-      document.getElementById('pw-error').style.display = 'block';
-    }
-  }
-  // Enterキーでも解除できるように
-  document.getElementById('pw-input').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') checkPw();
-  });
-</script>
-   
     <!-- スケジュール -->
     <section id="schedule">
       <h2>📅 スケジュール</h2>
@@ -680,12 +700,31 @@
   </div>
 
   <script>
+    // パスワード設定（ここを変更してください）
+    const CORRECT_PW = "mskao2027";
+
     function showSection(id, btn) {
       document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
       document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       btn.classList.add('active');
     }
+
+    function checkPw() {
+      const input = document.getElementById('pw-input').value;
+      if (input === CORRECT_PW) {
+        document.getElementById('pw-gate').style.display = 'none';
+        document.getElementById('guideline-content').style.display = 'block';
+      } else {
+        document.getElementById('pw-error').style.display = 'block';
+      }
+    }
+
+    // Enterキーでも解除できる
+    document.getElementById('pw-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') checkPw();
+    });
+
     function handleSubmit(e) {
       e.preventDefault();
       document.getElementById('success-msg').style.display = 'block';
