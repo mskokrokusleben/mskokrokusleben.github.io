@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アンソロジー企画「タイトル未定」</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    header {
+      text-align: center;
+      padding: 48px 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 0 0 24px 24px;
+      margin-bottom: 32px;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+    header .sub {
+      font-size: 0.9rem;
+      margin-top: 8px;
+      opacity: 0.85;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .nav-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #e0e0e0;
+      color: #555;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      font-family: inherit;
+    }
+    .nav-btn.active {
+      background: #667eea;
+      color: white;
+    }
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    section {
+      display: none;
+      background: white;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+    }
+    section.active {
+      display: block;
+    }
+    section h2 {
+      color: #667eea;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 8px;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+    section h3 {
+      color: #764ba2;
+      margin: 20px 0 10px 0;
+      font-size: 1.1rem;
+    }
+    section p, section li {
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+    section ul {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+    .box {
+      background: #f8f9ff;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      border-left: 4px solid #667eea;
+    }
+    .box h3 {
+      margin-top: 0;
+    }
+    .alert {
+      background: #fff5f5;
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 20px;
+      border: 2px solid #ffcdd2;
+      color: #c62828;
+      font-weight: 600;
+    }
+    .success-box {
+      background: #e8f5e9;
+      padding: 16px;
+      border-radius: 12px;
+      margin: 20px 0;
+      border: 2px solid #a5d6a7;
+      color: #2e7d32;
+      font-weight: 600;
+    }
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, #667eea, #764ba2);
+      border-radius: 3px;
+    }
+    .timeline-item {
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      background: #764ba2;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px #764ba2;
+    }
+    .timeline-item.highlight::before {
+      background: #ff6b6b;
+      box-shadow: 0 0 0 2px #ff6b6b;
+    }
+    .timeline-item > div {
+      background: #f8f9ff;
+      padding: 16px 20px;
+      border-radius: 12px;
+    }
+    .timeline-item.highlight > div {
+      background: #fff5f5;
+      border: 2px solid #ffcdd2;
+    }
+    .timeline-item .date {
+      margin: 0;
+      font-weight: 700;
+      color: #764ba2;
+      font-size: 0.9rem;
+    }
+    .timeline-item.highlight .date {
+      color: #c62828;
+    }
+    .timeline-item .title {
+      margin: 4px 0 0 0;
+      font-weight: 600;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #555;
+    }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      padding: 8px 14px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      font-weight: normal;
+      margin-bottom: 0;
+    }
+    .checkbox-group input {
+      width: 18px;
+      height: 18px;
+      accent-color: #667eea;
+    }
+    button[type="submit"] {
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 8px;
+      font-family: inherit;
+    }
+    button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102,126,234,0.4);
+    }
+    #success-msg {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background: #e8f5e9;
+      border-radius: 12px;
+      border: 2px solid #a5d6a7;
+      text-align: center;
+    }
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #888;
+      font-size: 0.85rem;
+      border-top: 1px solid #eee;
+      margin-top: 16px;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      nav { gap: 6px; }
+      .nav-btn { padding: 8px 14px; font-size: 0.85rem; }
+      section { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>🌸 アンソロジー企画 🌸</h1>
+      <p>「タイトル未定」参加者募集のお知らせ</p>
+      <p class="sub">2026年XX月XX日 発行予定</p>
+    </header>
+
+    <nav>
+      <button class="nav-btn active" onclick="showSection('about', this)">企画概要</button>
+      <button class="nav-btn" onclick="showSection('guideline', this)">参加要項</button>
+      <button class="nav-btn" onclick="showSection('schedule', this)">スケジュール</button>
+      <button class="nav-btn" onclick="showSection('contact', this)">お問い合わせ</button>
+    </nav>
+
+    <section id="about" class="active">
+      <h2>📖 企画概要</h2>
+      <p>本アンソロジーは、<strong>【ジャンル名】</strong>をテーマにした合同誌企画です。</p>
+      <p>参加者の皆様の個性豊かな作品を一冊にまとめ、読者の皆様にお届けします。</p>
+      
+      <div class="box">
+        <h3>🎯 テーマ</h3>
+        <p>「テーマ名をここに記入」</p>
+      </div>
+
+      <div class="box">
+        <h3>📐 仕様</h3>
+        <ul>
+          <li>サイズ：A5（148mm × 210mm）</li>
+          <li>ページ数：予定XXページ</li>
+          <li>印刷：オフセット印刷（カラー表紙・モノクロ本文）</li>
+          <li>頒布価格：予定XXX円</li>
+        </ul>
+      </div>
+
+      <div class="alert">
+        ⚠️ 参加をご検討の方は、必ず「参加要項」をご確認ください。
+      </div>
+    </section>
+
+    <section id="guideline">
+      <h2>📝 参加要項</h2>
+      
+      <h3>1. 参加資格</h3>
+      <ul>
+        <li>【ジャンル名】の作品を制作できる方</li>
+        <li>締切を守れる方</li>
+        <li>連絡が確実に取れる方</li>
+      </ul>
+
+      <h3>2. 原稿規定</h3>
+      <ul>
+        <li><strong>漫画：</strong>XXページ以内（トーン貼りOK）</li>
+        <li><strong>小説：</strong>XX文字以内（Word原稿用紙換算XX枚程度）</li>
+        <li><strong>イラスト：</strong>カラー・モノクロ問わず1点以上</li>
+        <li>※複数形態での参加も歓迎します</li>
+      </ul>
+
+      <h3>3. 提出形式</h3>
+      <ul>
+        <li>データ提出：PDF形式（印刷用350dpi推奨）</li>
+        <li>提出期限：20XX年XX月XX日（XX時まで）</li>
+        <li>提出先：主催者指定のクラウドストレージ</li>
+      </ul>
+
+      <h3>4. 諸経費</h3>
+      <ul>
+        <li>参加費：無料</li>
+        <li>印刷費：実費按分（予定1部あたりXXX円程度）</li>
+        <li>送料：各自負担（宅配便にて発送予定）</li>
+      </ul>
+
+      <div class="success-box">
+        ✅ 参加ご希望の方は、お問い合わせフォームより「参加希望」と明記の上、ご連絡ください。
+      </div>
+    </section>
+
+    <section id="schedule">
+      <h2>📅 スケジュール</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div>
+            <p class="date">20XX年XX月XX日</p>
+            <p class="title">参加者募集開始</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div>
+            <p class="date">20XX年XX月XX日</p>
+            <p class="title">参加締切・企画書提出期限</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div>
+            <p class="date">20XX年XX月XX日</p>
+            <p class="title">原稿締切</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div>
+            <p class="date">20XX年XX月XX日</p>
+            <p class="title">入稿・印刷</p>
+          </div>
+        </div>
+        <div class="timeline-item highlight">
+          <div>
+            <p class="date">20XX年XX月XX日</p>
+            <p class="title">🎉 頒布開始（イベント名・通販開始）</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>📧 お問い合わせ</h2>
+      <p style="margin-bottom: 20px;">参加希望・ご質問などがございましたら、以下のフォームよりお気軽にお問い合わせください。</p>
+      
+      <form onsubmit="handleSubmit(event)">
+        <div>
+          <label>お名前（ハンドルネーム可）<span style="color: #e74c3c;">*</span></label>
+          <input type="text" required placeholder="山田太郎">
+        </div>
+
+        <div>
+          <label>メールアドレス<span style="color: #e74c3c;">*</span></label>
+          <input type="email" required placeholder="example@email.com">
+        </div>
+
+        <div>
+          <label>問い合わせ種別<span style="color: #e74c3c;">*</span></label>
+          <select required>
+            <option value="">選択してください</option>
+            <option value="join">参加希望</option>
+            <option value="question">企画についての質問</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+
+        <div>
+          <label>参加形態（参加希望の方）</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox"> 漫画</label>
+            <label><input type="checkbox"> 小説</label>
+            <label><input type="checkbox"> イラスト</label>
+            <label><input type="checkbox"> その他</label>
+          </div>
+        </div>
+
+        <div>
+          <label>お問い合わせ内容<span style="color: #e74c3c;">*</span></label>
+          <textarea required rows="6" placeholder="参加希望の場合は、希望ページ数・参加形態などをご記入ください。"></textarea>
+        </div>
+
+        <button type="submit">📤 送信する</button>
+      </form>
+
+      <div id="success-msg">
+        <p style="margin: 0; color: #2e7d32; font-weight: 700; font-size: 1.1rem;">✅ お問い合わせありがとうございます！</p>
+        <p style="margin: 8px 0 0 0; color: #555;">内容を確認の上、数日以内にご返信いたします。</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 アンソロジー企画</p>
+      <p>お問い合わせ：主催者メールアドレス / SNSアカウント</p>
+    </footer>
+  </div>
+
+  <script>
+    function showSection(id, btn) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+    }
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('success-msg').style.display = 'block';
+      e.target.reset();
+      setTimeout(() => {
+        document.getElementById('success-msg').style.display = 'none';
+      }, 5000);
+    }
+  </script>
+
+</body>
+</html>
