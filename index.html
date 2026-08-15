@@ -106,15 +106,27 @@
       padding-left: 24px;
       margin-bottom: 16px;
     }
-    .box {
-      background: #f8f9ff;
-      padding: 20px;
-      border-radius: 12px;
-      margin: 20px 0;
-      border-left: 4px solid #667eea;
+    /* 企画概要：パターンC リボン付き + 薄い黄色背景 */
+    .box-cute {
+      background: #fffde7;
+      padding: 28px 24px 24px;
+      border-radius: 16px;
+      margin: 28px 0 20px;
+      border: 2px solid #e0e0e0;
+      position: relative;
     }
-    .box h3 {
-      margin-top: 0;
+    .box-cute::before {
+      content: "🎀";
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 0 12px;
+      font-size: 1.5rem;
+    }
+    .box-cute h3 {
+      margin-top: 8px;
       border-left: none;
       padding-left: 0;
     }
@@ -134,6 +146,24 @@
       margin: 20px 0;
       border: 2px solid #90caf9;
       color: #1565c0;
+    }
+    /* スケジュール：シンプルドット枠 + ☕ */
+    .schedule-wrap {
+      background: #fff;
+      padding: 28px 24px 24px;
+      border-radius: 16px;
+      border: 3px dotted #ffb6c1;
+      position: relative;
+      margin-top: 20px;
+    }
+    .schedule-wrap::before {
+      content: "☕";
+      position: absolute;
+      top: -16px;
+      right: 20px;
+      background: white;
+      padding: 0 10px;
+      font-size: 1.4rem;
     }
     .timeline {
       position: relative;
@@ -274,7 +304,7 @@
       margin-top: 16px;
     }
     .member-table th {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: #7ebeab;
       color: white;
       padding: 14px 16px;
       text-align: left;
@@ -285,7 +315,7 @@
       padding: 14px 16px;
       border-bottom: 1px solid #e0e0e0;
     }
-    .member-table tr:nth-child(even) { background: #f8f9ff; }
+    .member-table tr:nth-child(even) { background: #fffde7; }
     .member-table tr:nth-child(odd) { background: white; }
     .tag {
       display: inline-block;
@@ -369,7 +399,8 @@
   <div class="container">
     <header>
       <h1>🌸 ますかおアンソロジー（未定）🌸</h1>
-      <p class="sub">2027年3月21日 発行予定</p>
+      <p>2027年3月21日 発行予定</p>
+      <p class="sub">HARU COMIC CITY 東京 2027</p>
     </header>
 
     <nav>
@@ -386,13 +417,13 @@
       <p>本アンソロジーは、<strong>「同棲」</strong>をテーマにした合同誌企画です。</p>
       <p>参加者の皆様の個性豊かな作品を一冊にまとめ、読者の皆様にお届けします。</p>
 
-      <div class="box">
+      <div class="box-cute">
         <h3>🎯 テーマ</h3>
         <p style="margin-bottom: 0;">「同棲」</p>
         <p style="margin-top: 8px; font-size: 0.9rem; color: #666;">テーマに沿った作品であれば自由にご執筆ください。全年齢を予定しております。</p>
       </div>
 
-      <div class="box">
+      <div class="box-cute">
         <h3>📐 仕様</h3>
         <ul style="margin-bottom: 0;">
           <li>サイズ：A5（右綴じ）</li>
@@ -402,7 +433,7 @@
         </ul>
       </div>
 
-      <div class="box">
+      <div class="box-cute">
         <h3>📅 発行・頒布</h3>
         <ul style="margin-bottom: 0;">
           <li>発行日：2027年3月21日</li>
@@ -411,7 +442,7 @@
         </ul>
       </div>
 
-      <div class="box">
+      <div class="box-cute">
         <h3>👤 主催</h3>
         <p style="margin-bottom: 0;">ジャッカロープの落日 / うたね</p>
       </div>
@@ -419,7 +450,7 @@
 
     <!-- 執筆者一覧 -->
     <section id="members">
-      <h2>👥 執筆者一覧</h2>
+      <h2>🌻 執筆者一覧</h2>
       <p style="margin-bottom: 20px;">本企画にご参加いただいた皆様をご紹介します。（随時更新）</p>
 
       <div style="overflow-x: auto;">
@@ -427,6 +458,7 @@
           <thead>
             <tr>
               <th>ハンドル名</th>
+              <th>ID</th>
               <th style="text-align: center;">参加形態</th>
               <th style="text-align: center;">ページ数</th>
               <th>作品タイトル</th>
@@ -434,29 +466,81 @@
           </thead>
           <tbody>
             <tr>
-              <td style="font-weight: 600;">サンプル太郎</td>
-              <td style="text-align: center;"><span class="tag tag-manga">漫画</span></td>
-              <td style="text-align: center;">8P</td>
-              <td style="color: #555;">タイトル未定</td>
+              <td style="font-weight: 600;">🌻 うたね</td>
+              <td style="color: #999;">（後日更新）</td>
+              <td style="text-align: center;"><span class="tag" style="background: #f5f5f5; color: #999;">未定</span></td>
+              <td style="text-align: center; color: #999;">—</td>
+              <td style="color: #999;">タイトル未定</td>
             </tr>
             <tr>
-              <td style="font-weight: 600;">サンプル花子</td>
-              <td style="text-align: center;"><span class="tag tag-novel">小説</span></td>
-              <td style="text-align: center;">12P</td>
-              <td style="color: #555;">タイトル未定</td>
+              <td style="font-weight: 600;">🌻 お嬢</td>
+              <td style="color: #999;">（後日更新）</td>
+              <td style="text-align: center;"><span class="tag" style="background: #f5f5f5; color: #999;">未定</span></td>
+              <td style="text-align: center; color: #999;">—</td>
+              <td style="color: #999;">タイトル未定</td>
             </tr>
             <tr>
-              <td style="font-weight: 600;">サンプル次郎</td>
-              <td style="text-align: center;"><span class="tag tag-illust">イラスト</span></td>
-              <td style="text-align: center;">1P</td>
-              <td style="color: #555;">—</td>
+              <td style="font-weight: 600;">🌻 zam</td>
+              <td style="color: #999;">（後日更新）</td>
+              <td style="text-align: center;"><span class="tag" style="background: #f5f5f5; color: #999;">未定</span></td>
+              <td style="text-align: center; color: #999;">—</td>
+              <td style="color: #999;">タイトル未定</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">🌻 ぐぁ</td>
+              <td style="color: #999;">（後日更新）</td>
+              <td style="text-align: center;"><span class="tag" style="background: #f5f5f5; color: #999;">未定</span></td>
+              <td style="text-align: center; color: #999;">—</td>
+              <td style="color: #999;">タイトル未定</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">🌻 げる</td>
+              <td style="color: #999;">（後日更新）</td>
+              <td style="text-align: center;"><span class="tag" style="background: #f5f5f5; color: #999;">未定</span></td>
+              <td style="text-align: center; color: #999;">—</td>
+              <td style="color: #999;">タイトル未定</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">🌻 meow</td>
+              <td style="color: #999;">（後日更新）</td>
+              <td style="text-align: center;"><span class="tag" style="background: #f5f5f5; color: #999;">未定</span></td>
+              <td style="text-align: center; color: #999;">—</td>
+              <td style="color: #999;">タイトル未定</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">🌻 ori</td>
+              <td style="color: #999;">（後日更新）</td>
+              <td style="text-align: center;"><span class="tag" style="background: #f5f5f5; color: #999;">未定</span></td>
+              <td style="text-align: center; color: #999;">—</td>
+              <td style="color: #999;">タイトル未定</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">🌻 よる</td>
+              <td style="color: #999;">（後日更新）</td>
+              <td style="text-align: center;"><span class="tag" style="background: #f5f5f5; color: #999;">未定</span></td>
+              <td style="text-align: center; color: #999;">—</td>
+              <td style="color: #999;">タイトル未定</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">🌻 mew</td>
+              <td style="color: #999;">（後日更新）</td>
+              <td style="text-align: center;"><span class="tag" style="background: #f5f5f5; color: #999;">未定</span></td>
+              <td style="text-align: center; color: #999;">—</td>
+              <td style="color: #999;">タイトル未定</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">🌻 つづや</td>
+              <td style="color: #999;">（後日更新）</td>
+              <td style="text-align: center;"><span class="tag" style="background: #f5f5f5; color: #999;">未定</span></td>
+              <td style="text-align: center; color: #999;">—</td>
+              <td style="color: #999;">タイトル未定</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div style="background: #e8f5e9; padding: 16px; border-radius: 12px; margin-top: 24px; border: 2px solid #a5d6a7; color: #2e7d32; font-weight: 600; text-align: center;">
-        🎉 現在 <strong>3名</strong> の参加者が確定しています！
+        🎉 現在 <strong>10名</strong> の参加者が確定しています！
       </div>
     </section>
 
@@ -612,29 +696,32 @@
     <!-- スケジュール -->
     <section id="schedule">
       <h2>📅 スケジュール</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div>
-            <p class="date">2026年9月11日</p>
-            <p class="title">執筆者・アンソロジー企画発表</p>
+
+      <div class="schedule-wrap">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div>
+              <p class="date">2026年9月11日</p>
+              <p class="title">執筆者・アンソロジー企画発表</p>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div>
-            <p class="date">2026年10月31日</p>
-            <p class="title">ページ数・タイトル連絡期限</p>
+          <div class="timeline-item">
+            <div>
+              <p class="date">2026年10月31日</p>
+              <p class="title">ページ数・タイトル連絡期限</p>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div>
-            <p class="date">2027年1月10日</p>
-            <p class="title">原稿締切</p>
+          <div class="timeline-item">
+            <div>
+              <p class="date">2027年1月10日</p>
+              <p class="title">原稿締切</p>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item highlight">
-          <div>
-            <p class="date">2027年3月21日</p>
-            <p class="title">🎉 アンソロジー頒布開始（HARU COMIC CITY 東京 2027）</p>
+          <div class="timeline-item highlight">
+            <div>
+              <p class="date">2027年3月21日</p>
+              <p class="title">🎉 アンソロジー頒布開始（HARU COMIC CITY 東京 2027）</p>
+            </div>
           </div>
         </div>
       </div>
@@ -699,7 +786,6 @@
   </div>
 
   <script>
-    // パスワード設定（ここを変更してください）
     const CORRECT_PW = "mskao2027";
 
     function showSection(id, btn) {
@@ -719,7 +805,6 @@
       }
     }
 
-    // Enterキーでも解除できる
     document.getElementById('pw-input').addEventListener('keypress', function(e) {
       if (e.key === 'Enter') checkPw();
     });
