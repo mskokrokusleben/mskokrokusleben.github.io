@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>アンソロジー企画「タイトル未定」</title>
+  <title>ますかおアンソロジー（未定）</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,7 +11,7 @@
       font-family: 'Noto Sans JP', sans-serif;
       background: #f5f7fa;
       color: #333;
-      line-height: 1.6;
+      line-height: 1.7;
     }
     .container {
       max-width: 800px;
@@ -89,14 +88,21 @@
     }
     section h3 {
       color: #764ba2;
-      margin: 20px 0 10px 0;
-      font-size: 1.1rem;
+      margin: 24px 0 10px 0;
+      font-size: 1.15rem;
+      border-left: 4px solid #764ba2;
+      padding-left: 10px;
+    }
+    section h4 {
+      color: #555;
+      margin: 16px 0 8px 0;
+      font-size: 1rem;
     }
     section p, section li {
       line-height: 1.8;
       margin-bottom: 8px;
     }
-    section ul {
+    section ul, section ol {
       padding-left: 24px;
       margin-bottom: 16px;
     }
@@ -109,6 +115,8 @@
     }
     .box h3 {
       margin-top: 0;
+      border-left: none;
+      padding-left: 0;
     }
     .alert {
       background: #fff5f5;
@@ -119,14 +127,13 @@
       color: #c62828;
       font-weight: 600;
     }
-    .success-box {
-      background: #e8f5e9;
+    .info-box {
+      background: #e3f2fd;
       padding: 16px;
       border-radius: 12px;
       margin: 20px 0;
-      border: 2px solid #a5d6a7;
-      color: #2e7d32;
-      font-weight: 600;
+      border: 2px solid #90caf9;
+      color: #1565c0;
     }
     .timeline {
       position: relative;
@@ -259,6 +266,36 @@
       border: 2px solid #a5d6a7;
       text-align: center;
     }
+    .member-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      margin-top: 16px;
+    }
+    .member-table th {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 14px 16px;
+      text-align: left;
+    }
+    .member-table th:first-child { border-radius: 10px 0 0 0; }
+    .member-table th:last-child { border-radius: 0 10px 0 0; }
+    .member-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .member-table tr:nth-child(even) { background: #f8f9ff; }
+    .member-table tr:nth-child(odd) { background: white; }
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .tag-manga { background: #e3f2fd; color: #1565c0; }
+    .tag-novel { background: #fce4ec; color: #c62828; }
+    .tag-illust { background: #f3e5f5; color: #6a1b9a; }
     footer {
       text-align: center;
       padding: 24px;
@@ -267,11 +304,23 @@
       border-top: 1px solid #eee;
       margin-top: 16px;
     }
+    .contact-info {
+      background: #f8f9ff;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      border: 2px solid #667eea;
+    }
+    .contact-info p {
+      margin: 6px 0;
+    }
     @media (max-width: 600px) {
       header h1 { font-size: 1.5rem; }
       nav { gap: 6px; }
       .nav-btn { padding: 8px 14px; font-size: 0.85rem; }
       section { padding: 24px 16px; }
+      .member-table { font-size: 0.85rem; }
+      .member-table th, .member-table td { padding: 10px 8px; }
     }
   </style>
 </head>
@@ -279,119 +328,274 @@
 
   <div class="container">
     <header>
-      <h1>🌸 アンソロジー企画 🌸</h1>
-      <p>「タイトル未定」参加者募集のお知らせ</p>
-      <p class="sub">2026年XX月XX日 発行予定</p>
+      <h1>🌸 ますかおアンソロジー（未定）🌸</h1>
+      <p>参加者の皆様へ</p>
+      <p class="sub">2027年3月21日 発行予定</p>
     </header>
 
     <nav>
       <button class="nav-btn active" onclick="showSection('about', this)">企画概要</button>
+      <button class="nav-btn" onclick="showSection('members', this)">執筆者一覧</button>
       <button class="nav-btn" onclick="showSection('guideline', this)">参加要項</button>
       <button class="nav-btn" onclick="showSection('schedule', this)">スケジュール</button>
       <button class="nav-btn" onclick="showSection('contact', this)">お問い合わせ</button>
     </nav>
 
+    <!-- 企画概要 -->
     <section id="about" class="active">
       <h2>📖 企画概要</h2>
-      <p>本アンソロジーは、<strong>【ジャンル名】</strong>をテーマにした合同誌企画です。</p>
+      <p>本アンソロジーは、<strong>「同棲」</strong>をテーマにした合同誌企画です。</p>
       <p>参加者の皆様の個性豊かな作品を一冊にまとめ、読者の皆様にお届けします。</p>
       
       <div class="box">
         <h3>🎯 テーマ</h3>
-        <p>「テーマ名をここに記入」</p>
+        <p style="margin-bottom: 0;">「同棲」</p>
+        <p style="margin-top: 8px; font-size: 0.9rem; color: #666;">テーマに沿った作品であれば自由にご執筆ください。全年齢を予定しております。</p>
       </div>
 
       <div class="box">
         <h3>📐 仕様</h3>
-        <ul>
-          <li>サイズ：A5（148mm × 210mm）</li>
-          <li>ページ数：予定XXページ</li>
-          <li>印刷：オフセット印刷（カラー表紙・モノクロ本文）</li>
-          <li>頒布価格：予定XXX円</li>
+        <ul style="margin-bottom: 0;">
+          <li>サイズ：A5（右綴じ）</li>
+          <li>本文紙：未定</li>
+          <li>内容：漫画、イラスト（カラー可）、小説</li>
+          <li>頒布価格：未定</li>
         </ul>
       </div>
 
-      <div class="alert">
-        ⚠️ 参加をご検討の方は、必ず「参加要項」をご確認ください。
+      <div class="box">
+        <h3>📅 発行・頒布</h3>
+        <ul style="margin-bottom: 0;">
+          <li>発行日：2027年3月21日</li>
+          <li>イベント：HARU COMIC CITY 東京 2027</li>
+          <li>通販委託も予定しております</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>👤 主催</h3>
+        <p style="margin-bottom: 0;">ジャッカロープの落日 / うたね</p>
       </div>
     </section>
 
+    <!-- 執筆者一覧 -->
+    <section id="members">
+      <h2>👥 執筆者一覧</h2>
+      <p style="margin-bottom: 20px;">本企画にご参加いただいた皆様をご紹介します。（随時更新）</p>
+      
+      <div style="overflow-x: auto;">
+        <table class="member-table">
+          <thead>
+            <tr>
+              <th>ハンドル名</th>
+              <th style="text-align: center;">参加形態</th>
+              <th style="text-align: center;">ページ数</th>
+              <th>作品タイトル</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight: 600;">サンプル太郎</td>
+              <td style="text-align: center;"><span class="tag tag-manga">漫画</span></td>
+              <td style="text-align: center;">8P</td>
+              <td style="color: #555;">タイトル未定</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">サンプル花子</td>
+              <td style="text-align: center;"><span class="tag tag-novel">小説</span></td>
+              <td style="text-align: center;">12P</td>
+              <td style="color: #555;">タイトル未定</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">サンプル次郎</td>
+              <td style="text-align: center;"><span class="tag tag-illust">イラスト</span></td>
+              <td style="text-align: center;">1P</td>
+              <td style="color: #555;">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="background: #e8f5e9; padding: 16px; border-radius: 12px; margin-top: 24px; border: 2px solid #a5d6a7; color: #2e7d32; font-weight: 600; text-align: center;">
+        🎉 現在 <strong>10名</strong> の参加者が確定しています！
+      </div>
+    </section>
+
+    <!-- 参加要項 -->
     <section id="guideline">
       <h2>📝 参加要項</h2>
-      
-      <h3>1. 参加資格</h3>
-      <ul>
-        <li>【ジャンル名】の作品を制作できる方</li>
-        <li>締切を守れる方</li>
-        <li>連絡が確実に取れる方</li>
-      </ul>
 
-      <h3>2. 原稿規定</h3>
-      <ul>
-        <li><strong>漫画：</strong>XXページ以内（トーン貼りOK）</li>
-        <li><strong>小説：</strong>XX文字以内（Word原稿用紙換算XX枚程度）</li>
-        <li><strong>イラスト：</strong>カラー・モノクロ問わず1点以上</li>
-        <li>※複数形態での参加も歓迎します</li>
-      </ul>
-
-      <h3>3. 提出形式</h3>
-      <ul>
-        <li>データ提出：PDF形式（印刷用350dpi推奨）</li>
-        <li>提出期限：20XX年XX月XX日（XX時まで）</li>
-        <li>提出先：主催者指定のクラウドストレージ</li>
-      </ul>
-
-      <h3>4. 諸経費</h3>
-      <ul>
-        <li>参加費：無料</li>
-        <li>印刷費：実費按分（予定1部あたりXXX円程度）</li>
-        <li>送料：各自負担（宅配便にて発送予定）</li>
-      </ul>
-
-      <div class="success-box">
-        ✅ 参加ご希望の方は、お問い合わせフォームより「参加希望」と明記の上、ご連絡ください。
+      <div class="contact-info">
+        <h3 style="border-left: none; padding-left: 0; margin-top: 0; color: #667eea;">📧 連絡先</h3>
+        <p><strong>X（旧Twitter）：</strong><a href="https://x.com/haseuta" target="_blank" style="color: #667eea;">@haseuta</a></p>
+        <p><strong>メールアドレス：</strong><a href="mailto:zimahase@gmail.com" style="color: #667eea;">zimahase@gmail.com</a></p>
+        <p style="margin-bottom: 0; font-size: 0.9rem; color: #666;">までご連絡いただきますようお願い致します。</p>
       </div>
+
+      <h3>1. 形式</h3>
+      <p>アンソロジーへの寄稿</p>
+
+      <h3>2. 発行日・タイトル</h3>
+      <ul>
+        <li>発行日：2027年3月21日　HARU COMIC CITY 東京 2027 イベント合わせ</li>
+        <li>タイトル：ますかおアンソロジー（未定）</li>
+      </ul>
+
+      <h3>3. 内容</h3>
+      <ul>
+        <li>漫画、イラスト（カラー可）、小説</li>
+        <li>テーマ：同棲</li>
+        <li>テーマに沿った作品であれば自由にご執筆ください</li>
+        <li>全年齢を予定しております</li>
+      </ul>
+
+      <h3>4. 原稿締切</h3>
+      <p><strong>1月10日</strong></p>
+      <p>編集・修正期間を含め、少し早めの締切を設定しております。遅れそうな場合はご相談ください。</p>
+
+      <h3>5. ページ数</h3>
+      <ul>
+        <li>一人<strong>8ページ以上</strong>を予定しております。一般的なアンソロジーより最低ページ数が多めのお願いとなってしまいますので、ページ数につきましては個別にご相談ください。</li>
+        <li>複数作品でも可能です。</li>
+        <li><strong>10月31日まで</strong>にページ数・タイトルをご連絡いただけますと幸いです。</li>
+        <li>上記の日程以降でページ数が増える場合はご相談ください。（増ページ自体は歓迎しておりますが、全体の構成調整のため事前にご相談いただけますと幸いです。）</li>
+      </ul>
+
+      <h3>6. データ形式</h3>
+      <p><strong>PDFまたはPSD</strong></p>
+      <ul>
+        <li>PDF提出の場合は<strong>フォント埋め込み</strong>をお願いいたします。</li>
+        <li>PSDの場合は<strong>データ統合</strong>をお願いいたします。</li>
+      </ul>
+
+      <h3>7. 原稿規格</h3>
+      <h4>▲ 漫画・イラスト</h4>
+      <ul>
+        <li>A5（塗り足し5mm込み）</li>
+        <li>600dpi</li>
+        <li>モノクロ2値またはグレースケール</li>
+        <li>厚い本にはならない予定ですが、念のため<strong>ノド20mm程度</strong>を目安にしていただけますと幸いです。</li>
+      </ul>
+
+      <h4>▲ 小説</h4>
+      <ul>
+        <li>テンプレート：<a href="https://www.eikou.com/dl/word/a5/2/a5-2-hidari-musen.doc" target="_blank" style="color: #667eea;">https://www.eikou.com/dl/word/a5/2/a5-2-hidari-musen.doc</a></li>
+        <li>フォント：お好きなフォント（源暎こぶり明朝等）、9pt</li>
+        <li>提出原稿：PDF、Wordどちらでも</li>
+        <li>左始まりの3ページ〜上限無し</li>
+        <li>ヘッダーは記入、ノンブルは付けないでください。当方で挿入します。</li>
+        <li>テンプレ通り始めにタイトル（1行目）、ペンネーム（2行目）をご記入いただき、3行目を空けて4行目から本文に入ってください。</li>
+        <li>提出時には「<strong>執筆者名＋ページ数.pdf</strong>」（※全て半角英数字）とファイル名に記載をお願いします。</li>
+        <li>Word環境等無い方はこちらでテンプレに流し込みしますので、メモ帳でテキストをお送りください。簡単な誤字脱字を見た後、最終チェックとなります。</li>
+      </ul>
+
+      <h3>8. 右綴じ・左綴じ</h3>
+      <p>希望は提出時にお伺い致します。</p>
+
+      <h3>9. ノンブル</h3>
+      <p>なしでお願い致します。編集時に追加致します。</p>
+
+      <h3>10. 校正</h3>
+      <p>ご希望があれば可能な範囲で対応致します。ただし素人のため、見逃し等がある可能性がございます。ご了承ください。</p>
+
+      <h3>11. 費用</h3>
+      <p>主催負担</p>
+
+      <h3>12. 謝礼</h3>
+      <p>献本およびささやかな謝礼（例：ギフト券等）を予定しております。</p>
+
+      <h3>13. 献本</h3>
+      <ul>
+        <li>匿名配送を予定しております。</li>
+        <li>恐れ入りますが、発送時の配送料は一度ご負担をお願いいたします。後日、ギフト券等にて配送料相当額をお返しいたします。</li>
+      </ul>
+
+      <h3>14. 頒布</h3>
+      <p>イベントおよび通販委託を予定しております。</p>
+
+      <h3>15. 印刷所</h3>
+      <p>栄光出版社様、サンライズ様を予定しております。仕様等にあわせ変更になる可能性があります。</p>
+
+      <h3>16. 仕様</h3>
+      <ul>
+        <li>A5</li>
+        <li>本文紙：未定</li>
+        <li>右綴じ</li>
+      </ul>
+
+      <h3>17. 作品タイトル</h3>
+      <p>中扉を設けない場合は、1ページ目にタイトルとお名前をご記載ください。</p>
+
+      <h3>18. コメントカット</h3>
+      <p>後日テンプレートを配布いたします。</p>
+
+      <h3>19. 奥付</h3>
+      <ul>
+        <li>発行者名、参加者様のお名前を掲載いたします。</li>
+        <li>発行元（サークル名）：企画主・編集者　ジャッカロープの落日/うたね</li>
+      </ul>
+
+      <h3>20. 著作権・再録</h3>
+      <ul>
+        <li>寄稿作品の著作権は執筆者様に帰属します。</li>
+        <li>発行前は、寄稿ページの一部を進捗・宣伝として公開していただいて構いません。</li>
+        <li>全文Web公開および再録は、発行から<strong>1年以降</strong>でお願い致します。</li>
+        <li>通販や告知用サンプルとして画像を使用させていただく場合があります。その際、透かし等はこちらで追加することがあります。</li>
+      </ul>
+
+      <h3>21. 辞退について</h3>
+      <p>何らかの事情で参加が難しくなった場合は、お早めにご連絡ください。ご連絡なく締切を過ぎた場合は、ご参加辞退と判断し、こちらの判断で進行させていただく場合があります。</p>
+
+      <h3>22. 内容についてのお願い</h3>
+      <ul>
+        <li>テーマに沿った作品でお願い致します。</li>
+        <li>他ジャンルのパロディ・クロスオーバーはご遠慮ください。</li>
+        <li>公序良俗に反する表現や、企画趣旨にそぐわない内容はご遠慮ください。</li>
+        <li>不安な点がございましたらお気軽にご相談ください。</li>
+        <li>公式画像や他作品のトレス等はお控えください。</li>
+        <li>印刷会社から修正指摘があった場合は、ご修正をお願いすることがあります。</li>
+      </ul>
     </section>
 
+    <!-- スケジュール -->
     <section id="schedule">
       <h2>📅 スケジュール</h2>
       <div class="timeline">
         <div class="timeline-item">
           <div>
-            <p class="date">20XX年XX月XX日</p>
-            <p class="title">参加者募集開始</p>
+            <p class="date">2026年9月11日</p>
+            <p class="title">執筆者・アンソロジー企画発表</p>
           </div>
         </div>
         <div class="timeline-item">
           <div>
-            <p class="date">20XX年XX月XX日</p>
-            <p class="title">参加締切・企画書提出期限</p>
+            <p class="date">2026年10月31日</p>
+            <p class="title">ページ数・タイトル連絡期限</p>
           </div>
         </div>
         <div class="timeline-item">
           <div>
-            <p class="date">20XX年XX月XX日</p>
+            <p class="date">2027年1月10日</p>
             <p class="title">原稿締切</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div>
-            <p class="date">20XX年XX月XX日</p>
-            <p class="title">入稿・印刷</p>
           </div>
         </div>
         <div class="timeline-item highlight">
           <div>
-            <p class="date">20XX年XX月XX日</p>
-            <p class="title">🎉 頒布開始（イベント名・通販開始）</p>
+            <p class="date">2027年3月21日</p>
+            <p class="title">🎉 アンソロジー頒布開始（HARU COMIC CITY 東京 2027）</p>
           </div>
         </div>
       </div>
+
+      <div class="info-box" style="margin-top: 28px;">
+        <p style="margin: 0; font-weight: 600;">📢 詳細決まり次第都度情報を更新します</p>
+      </div>
     </section>
 
+    <!-- お問い合わせ -->
     <section id="contact">
       <h2>📧 お問い合わせ</h2>
-      <p style="margin-bottom: 20px;">参加希望・ご質問などがございましたら、以下のフォームよりお気軽にお問い合わせください。</p>
+      <p style="margin-bottom: 20px;">ご質問などがございましたら、以下のフォームよりお気軽にお問い合わせください。</p>
       
       <form onsubmit="handleSubmit(event)">
         <div>
@@ -408,25 +612,22 @@
           <label>問い合わせ種別<span style="color: #e74c3c;">*</span></label>
           <select required>
             <option value="">選択してください</option>
-            <option value="join">参加希望</option>
             <option value="question">企画についての質問</option>
             <option value="other">その他</option>
           </select>
         </div>
 
         <div>
-          <label>参加形態（参加希望の方）</label>
+          <label>ご質問者様</label>
           <div class="checkbox-group">
-            <label><input type="checkbox"> 漫画</label>
-            <label><input type="checkbox"> 小説</label>
-            <label><input type="checkbox"> イラスト</label>
-            <label><input type="checkbox"> その他</label>
+            <label><input type="checkbox"> 寄稿者からの質問</label>
+            <label><input type="checkbox"> その他からの質問</label>
           </div>
         </div>
 
         <div>
           <label>お問い合わせ内容<span style="color: #e74c3c;">*</span></label>
-          <textarea required rows="6" placeholder="参加希望の場合は、希望ページ数・参加形態などをご記入ください。"></textarea>
+          <textarea required rows="6" placeholder="お問い合わせ内容をご記入ください。"></textarea>
         </div>
 
         <button type="submit">📤 送信する</button>
@@ -439,8 +640,9 @@
     </section>
 
     <footer>
-      <p>© 2026 アンソロジー企画</p>
-      <p>お問い合わせ：主催者メールアドレス / SNSアカウント</p>
+      <p>© 2026-2027 ますかおアンソロジー企画</p>
+      <p>主催：ジャッカロープの落日 / うたね</p>
+      <p>連絡先：X @haseuta / zimahase@gmail.com</p>
     </footer>
   </div>
 
