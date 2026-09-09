@@ -554,7 +554,7 @@
         <p>🔒 参加要項は参加者専用です</p>
         <div class="pw-input-wrap">
           <input type="password" id="pw-input" placeholder="パスワードを入力">
-          <button onclick="checkPw(msko)">解除</button>
+          <button onclick="checkPw()">解除</button>
         </div>
         <p id="pw-error" class="pw-error">パスワードが違います</p>
       </div>
@@ -743,20 +743,20 @@
       <h2>📧 お問い合わせ</h2>
       <p style="margin-bottom: 20px;">ご質問などがございましたら、以下のフォームよりお気軽にお問い合わせください。</p>
 
-      <form onsubmit="handleSubmit(event)">
+      <form action="https://formspree.io/f/moeqyebr" method="POST">
         <div>
           <label>お名前（ハンドルネーム可）<span style="color: #e74c3c;">*</span></label>
-          <input type="text" required placeholder="山田太郎">
+          <input type="text" name="name" required placeholder="山田太郎">
         </div>
 
         <div>
           <label>メールアドレス<span style="color: #e74c3c;">*</span></label>
-          <input type="email" required placeholder="example@email.com">
+          <input type="email" name="email" required placeholder="example@email.com">
         </div>
 
         <div>
           <label>問い合わせ種別<span style="color: #e74c3c;">*</span></label>
-          <select required>
+          <select name="type" required>
             <option value="">選択してください</option>
             <option value="question">企画についての質問</option>
             <option value="other">その他</option>
@@ -766,23 +766,18 @@
         <div>
           <label>ご質問者様</label>
           <div class="checkbox-group">
-            <label><input type="checkbox"> 寄稿者からの質問</label>
-            <label><input type="checkbox"> その他からの質問</label>
+            <label><input type="checkbox" name="from_contributor" value="yes"> 寄稿者からの質問</label>
+            <label><input type="checkbox" name="from_other" value="yes"> その他からの質問</label>
           </div>
         </div>
 
         <div>
           <label>お問い合わせ内容<span style="color: #e74c3c;">*</span></label>
-          <textarea required rows="6" placeholder="お問い合わせ内容をご記入ください。"></textarea>
+          <textarea name="message" required rows="6" placeholder="お問い合わせ内容をご記入ください。"></textarea>
         </div>
 
         <button type="submit">📤 送信する</button>
       </form>
-
-      <div id="success-msg">
-        <p style="margin: 0; color: #2e7d32; font-weight: 700; font-size: 1.1rem;">✅ お問い合わせありがとうございます！</p>
-        <p style="margin: 8px 0 0 0; color: #555;">内容を確認の上、数日以内にご返信いたします。</p>
-      </div>
     </section>
 
     <footer>
@@ -816,14 +811,7 @@
       if (e.key === 'Enter') checkPw();
     });
 
-    function handleSubmit(e) {
-      e.preventDefault();
-      document.getElementById('success-msg').style.display = 'block';
-      e.target.reset();
-      setTimeout(() => {
-        document.getElementById('success-msg').style.display = 'none';
-      }, 5000);
-    }
+   }
   </script>
 
 </body>
