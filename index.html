@@ -413,6 +413,7 @@
       <button class="nav-btn" onclick="showSection('guideline', this)">参加要項</button>
       <button class="nav-btn" onclick="showSection('schedule', this)">スケジュール</button>
       <button class="nav-btn" onclick="showSection('contact', this)">お問い合わせ</button>
+      <button class="nav-btn" onclick="showSection('qa', this)">ご質問・回答</button>
     </nav>
 
     <!-- 企画概要 -->
@@ -739,6 +740,28 @@
       </div>
     </section>
 
+    <!-- 質疑応答 -->
+    <section id="qa">
+      <h2>💬 ご質問・回答</h2>
+      <p style="margin-bottom: 24px;">こちらでは皆様から頂いた質問の答えを共有致します。</p>
+
+      <div style="background: #f8f9ff; padding: 20px; border-radius: 12px; margin-bottom: 16px; border-left: 4px solid #667eea;">
+        <p style="font-weight: 700; color: #667eea; margin-bottom: 8px;">❓ Q. 終戦後など、設定を変更した内容での制作は可能でしょうか。</p>
+        <p style="margin: 0; color: #555;">A. 時間軸はどの軸でも問題ございません。</p>
+      </div>
+
+      <div style="background: #f8f9ff; padding: 20px; border-radius: 12px; margin-bottom: 16px; border-left: 4px solid #667eea;">
+        <p style="font-weight: 700; color: #667eea; margin-bottom: 8px;">❓ Q. 怪我・欠損等の描写を含めることは可能でしょうか。</p>
+        <p style="margin: 0; color: #555;">A. ご質問いただいた描写が含まれていても問題ございません。内容が決まりましたら、お手数ですが再度そういった表現がある旨を記載していただけると幸いです。</p>
+      </div>
+
+      <div style="background: #fffde7; padding: 16px; border-radius: 12px; margin-top: 24px; border: 2px solid #ffd54f;">
+        <p style="margin: 0; color: #555; font-size: 0.95rem;">📢 その他の質問は「お問い合わせ」フォームよりお気軽にどうぞ。</p>
+      </div>
+    </section>
+
+    <!-- お問い合わせ -->
+    <section id="contact">
     <!-- お問い合わせ -->
     <section id="contact">
       <h2>📧 お問い合わせ</h2>
@@ -806,7 +829,8 @@
       } else {
         document.getElementById('pw-error').style.display = 'block';
       }
-    
+    }
+
     document.getElementById('pw-input').addEventListener('keypress', function(e) {
       if (e.key === 'Enter') checkPw();
     });
